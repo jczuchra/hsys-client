@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { IntlProvider } from 'react-intl';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import { MainPage, LoginPage, CreateAccountPage } from './views/index';
+import { useCookies } from 'react-cookie';
+import { PrivateRoute, LoginRoute } from './routes';
 
-function App() {
+const App = () => {
+  const [cookies] = useCookies();
+  const isAuthenticated = cookies['refresh-token'];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <IntlProvider>
+      <div className='App'>
+        <Router>
+          <Navbar isAuthenticated={isAuthenticated} />
+          <Switch>
+            <LoginRoute isAuthenticated={isAuthenticated} path='/createAccount'>
+              <CreateAccountPage />
+            </LoginRoute>
+            <LoginRoute isAuthenticated={isAuthenticated} path='/login'>
+              <LoginPage />
+            </LoginRoute>
+            <PrivateRoute isAuthenticated={isAuthenticated} path='/assets'>
+              <div>Im loggedin in</div>
+            </PrivateRoute>
+            <Route path='/'>
+              <MainPage />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </IntlProvider>
   );
-}
+};
 
 export default App;

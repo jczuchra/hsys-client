@@ -1,0 +1,35 @@
+.heroImage {
+  background-image: url('../../assets/mainImage.svg');
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: right;
+  height: 900px;
+  @media (max-width: 1200px) {
+    height: 700px;
+    background-position: left;
+    background-image: url('../../assets/mainImage.svg');
+  }
+  @media (max-width: 768px) {
+    height: 700px;
+    background-position: right;
+    background-image: url('../../assets/mainImageS.svg');
+  }
+}
+
+.heroButton {
+  position: absolute !important;
+  width: 550px;
+  height: 100px !important;
+  font-size: 36px !important;
+  bottom: 25%;
+  left: 5%;
+}
+
+.heroTitle {
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  max-width: 550px;
+  text-align: center;
+  font-size: 48px !important;
+}
