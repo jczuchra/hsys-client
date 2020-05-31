@@ -1,9 +1,10 @@
 import React from 'react';
 import { Input, Typography, Form, Checkbox, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useMutation, useLazyQuery } from '@apollo/react-hooks';
-import { useCookies } from 'react-cookie';
+import { openNotification } from '../../common/functions/openNotification/openNotification';
 
 // import './createAccountPage.scss';
 
@@ -25,10 +26,19 @@ const tailLayout = {
 };
 
 const CreateAccountPage = () => {
+  const history = useHistory();
   const [
     loginUser,
     { data, loading: mutationLoading, error: mutationError },
-  ] = useMutation(LOGIN_USER);
+  ] = useMutation(LOGIN_USER, {
+    onCompleted: (data) => {
+      if (data.login.status) {
+        openNotification('Login', data.login.message, 'success');
+        return (window.location = '/');
+      }
+      openNotification('Login', data.login.message, 'error');
+    },
+  });
 
   const { Title } = Typography;
 

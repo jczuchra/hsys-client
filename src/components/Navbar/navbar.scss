@@ -1,15 +1,22 @@
-@import "../../common/styles.scss";
+@import '../../common/styles.scss';
 
 .menuContainer {
-    display: flex;
-    justify-content: flex-start;
-    height: 70px;
-    align-items: center;
-    font-size: 16px !important;
-    padding: 0 50px !important;
-    @include applyBottomShadow();
+  display: flex;
+  justify-content: flex-start;
+  height: 70px;
+  align-items: center;
+  font-size: 16px !important;
+  padding: 0 50px !important;
+  @include applyBottomShadow-02();
 }
 
 .menuButton {
-    margin-left: auto !important;
+  margin-left: auto !important;
+}
+
+.ant-menu-item {
+  .ant-btn-link {
+    color: rgba(0, 0, 0, 0.65) !important;
+    font-size: 16px;
+  }
 }

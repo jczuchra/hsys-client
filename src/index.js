@@ -5,7 +5,6 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { CookiesProvider } from 'react-cookie';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { setContext } from 'apollo-link-context';
 import 'antd/dist/antd.css';
 
 import ApolloClient from 'apollo-client';

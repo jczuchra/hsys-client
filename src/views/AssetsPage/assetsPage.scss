@@ -1,0 +1,34 @@
+@import '../../common/styles.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: $background-ui;
+  min-height: calc(100vh - 70px);
+  padding: 0 $spacing-05;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: $spacing-06;
+  margin-bottom: $spacing-03;
+}
+
+.headerTitle {
+  @include productive-header-01;
+  margin-bottom: $spacing-02 !important;
+}
+
+.headerSubtitle {
+  @include body-short-01;
+  margin-top: 0 !important;
+  margin-left: $spacing-02;
+}
+
+.addButton {
+  width: 180px;
+  height: 52px !important;
+}

@@ -1,0 +1,21 @@
+@import '../../common/styles.scss';
+
+.deleteModalButton {
+  @include deleteButton();
+  &:hover {
+    font-weight: 400 !important;
+  }
+}
+
+.modalCancel {
+  @include actionButton();
+  &:hover {
+    font-weight: 400 !important;
+  }
+}
+
+.modalIcon {
+  font-size: 24px;
+  color: $warning !important;
+  margin-right: $spacing-02;
+}

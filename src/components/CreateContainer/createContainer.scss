@@ -1,0 +1,61 @@
+@import '../../common/styles.scss';
+
+.createContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: $background-ui;
+  min-height: calc(100vh - 70px);
+  padding: 0 $spacing-05;
+}
+
+.createButton {
+  width: 180px;
+  height: 52px !important;
+}
+
+.cancelButton {
+  background-color: $black !important;
+  border-color: $black !important;
+  margin-right: $spacing-03;
+}
+
+.breadcrumb {
+  font-size: 20px !important;
+  margin-left: -$spacing-05 !important;
+  padding: $spacing-03 !important;
+  padding-left: $spacing-05 !important;
+  @include applyBottomShadow();
+  width: 100vw !important;
+  background-color: $ui-01;
+  .ant-btn-link {
+    font-size: 20px !important;
+  }
+}
+
+.createHeaderContainer {
+  text-align: center;
+  width: 100%;
+  margin-top: $spacing-06;
+}
+
+.createFormContainer {
+  align-self: center;
+  width: 100%;
+  margin-top: $spacing-07;
+
+  .ant-form-item-label {
+    label {
+      font-size: 20px;
+      height: 50px !important;
+    }
+  }
+  .ant-input,
+  .ant-input-number-input {
+    height: 50px;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+}

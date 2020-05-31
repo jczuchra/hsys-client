@@ -1,9 +1,9 @@
 import React from 'react';
 import { Input, Typography, Form, Checkbox, Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 import gql from 'graphql-tag';
-import { useMutation, useLazyQuery } from '@apollo/react-hooks';
-import { useCookies } from 'react-cookie';
+import { useMutation } from '@apollo/react-hooks';
+import { openNotification } from '../../common/functions/openNotification/openNotification';
 
 import './createAccountPage.scss';
 
@@ -41,17 +41,17 @@ const tailLayout = {
 };
 
 const CreateAccountPage = () => {
+  const history = useHistory();
   const [
     registerUser,
     { data, loading: mutationLoading, error: mutationError },
   ] = useMutation(CREATE_USER, {
-    onCompleted: (data) => setCookie('accessToken', data.register.accessToken),
+    onCompleted: (data) => {
+      openNotification('Register', data.register.message);
+      window.location = '/';
+    },
   });
-  const [cookies, setCookie] = useCookies(['accessToken']);
 
-  const [getDeviceCategories, { deviceLoading, deviceData }] = useLazyQuery(
-    GET_ALL_DEVICE_CATEGORIES
-  );
   const { Title } = Typography;
 
   const onFinish = ({ email, password }) => {
@@ -64,14 +64,8 @@ const CreateAccountPage = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const onSendMe = () => {
-    getDeviceCategories();
-    console.log('Data', data);
-  };
-
   return (
     <div className=''>
-      {/* {console.log('Mutation', data, mutationLoading, mutationError)} */}
       <Title className='title'>Create Account</Title>
       <Form
         {...layout}
@@ -103,7 +97,6 @@ const CreateAccountPage = () => {
           </Button>
         </Form.Item>
       </Form>
-      <Button onClick={() => onSendMe()}>Send me</Button>
     </div>
   );
 };

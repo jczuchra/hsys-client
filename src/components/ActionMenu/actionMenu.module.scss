@@ -1,0 +1,11 @@
+.popoverIcon {
+  font-size: 30px;
+}
+
+.button {
+  border: none !important;
+}
+
+:global(.ant-popover-inner-content) {
+  padding: 0 !important;
+}

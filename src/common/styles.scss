@@ -1,5 +1,73 @@
 @mixin applyBottomShadow {
-    -webkit-box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important;
-    -moz-box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important;
-    box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important
+  -webkit-box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important;
+  -moz-box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important;
+  box-shadow: 0px 1px 2px 0px rgb(206, 204, 206) !important;
 }
+
+@mixin applyBottomShadow-02 {
+  -webkit-box-shadow: 0px 0.5px 0.5px 0px rgb(206, 204, 206) !important;
+  -moz-box-shadow: 0px 0.5px 0.5px 0px rgb(206, 204, 206) !important;
+  box-shadow: 0px 0.5px 0.5px 0px rgb(206, 204, 206) !important;
+}
+
+@mixin bigButton {
+  line-height: 2.2 !important;
+  padding-right: $spacing-05 !important;
+  padding-left: $spacing-04 !important;
+  font-size: 16px !important;
+}
+
+@mixin productive-header-01 {
+  font-size: 46px !important;
+  font-weight: 400 !important;
+}
+
+@mixin body-short-01 {
+  font-size: 22px !important;
+  font-weight: 300 !important;
+}
+
+@mixin actionButton {
+  border: none !important;
+  height: 40px !important;
+  font-size: 16px !important;
+  &:hover {
+    background-color: $background-ui !important;
+    font-weight: 500 !important;
+  }
+}
+
+@mixin deleteButton {
+  border: none !important;
+  background-color: $delete !important;
+  height: 40px !important;
+  font-size: 16px !important;
+  color: $ui-01 !important;
+  &:hover {
+    background-color: $delete-hover !important;
+    font-weight: 500 !important;
+  }
+}
+
+// spacings
+
+$spacing-01: 0.25rem;
+$spacing-02: 0.5rem;
+$spacing-03: 1rem;
+$spacing-04: 1.75rem;
+$spacing-05: 2.25rem;
+$spacing-06: 2.5rem;
+$spacing-07: 3rem;
+$spacing-08: 3.5rem;
+$spacing-09: 5rem;
+
+// colors
+
+$black: rgb(58, 55, 55);
+$error: #be0a0aa6;
+$success: #37a01ca9;
+$warning: rgb(226, 223, 14);
+$background-ui: #b6b6b623;
+$ui-01: #ffffff;
+$delete: #db1b1bd0;
+$delete-hover: #fa1212d0;

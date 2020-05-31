@@ -1,0 +1,18 @@
+@import '../../../common/styles.scss';
+
+.popoverIcon {
+  font-size: 30px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  @include actionButton();
+}
+
+.deleteButton {
+  @include deleteButton();
+}
