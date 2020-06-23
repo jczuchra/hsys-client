@@ -1,12 +1,9 @@
 import React from 'react';
 import { Input, Typography, Form, Checkbox, Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import gql from 'graphql-tag';
-import { useMutation, useLazyQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import { openNotification } from '../../common/functions/openNotification/openNotification';
-
-// import './createAccountPage.scss';
 
 const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
@@ -54,7 +51,6 @@ const CreateAccountPage = () => {
 
   return (
     <div className=''>
-      {/* {console.log('Mutation', data, mutationLoading, mutationError)} */}
       <Title className='title'>Login</Title>
       <Form
         {...layout}

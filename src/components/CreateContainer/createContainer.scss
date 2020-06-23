@@ -50,8 +50,10 @@
     }
   }
   .ant-input,
-  .ant-input-number-input {
+  .ant-input-number-input,
+  .ant-picker {
     height: 50px;
+    min-width: 150px;
   }
 }
 

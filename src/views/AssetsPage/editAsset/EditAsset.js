@@ -1,8 +1,7 @@
 import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import { Button, Typography, Breadcrumb, Form, Input, InputNumber } from 'antd';
-import gql from 'graphql-tag';
+import { Form, Input, InputNumber } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import CreateContainer from '../../../components/CreateContainer/CreateContainer';
 import { openNotification } from '../../../common/functions/openNotification';
@@ -16,7 +15,6 @@ const EditAsset = () => {
   const assetId = params.get('id');
   const [editAsset, { editData, loading }] = useMutation(EDIT_ASSET, {
     onCompleted: (data) => {
-      console.log('Kapota', data.editAsset);
       openNotification(
         formatMessage(messages.edit),
         data.editAsset.message,

@@ -11,6 +11,12 @@ import {
   AssetsPage,
   CreateAsset,
   EditAsset,
+  DevicesPage,
+  AddDevice,
+  EditDevice,
+  ErrorPage,
+  DeviceCategoriesPage,
+  CategoryPage,
 } from './views/index';
 
 const App = () => {
@@ -37,6 +43,28 @@ const App = () => {
             <PrivateRoute isAuthenticated={isAuthenticated} path='/editAsset'>
               <EditAsset />
             </PrivateRoute>
+            <PrivateRoute isAuthenticated={isAuthenticated} path='/devices'>
+              <DevicesPage />
+            </PrivateRoute>
+            <PrivateRoute isAuthenticated={isAuthenticated} path='/addDevice'>
+              <AddDevice />
+            </PrivateRoute>
+            <PrivateRoute isAuthenticated={isAuthenticated} path='/editDevice'>
+              <EditDevice />
+            </PrivateRoute>
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              path='/deviceCategories'>
+              <DeviceCategoriesPage />
+            </PrivateRoute>
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              path='/categoryDetails'>
+              <CategoryPage />
+            </PrivateRoute>
+            <Route path='/error'>
+              <ErrorPage />
+            </Route>
             <Route path='/'>
               <MainPage />
             </Route>

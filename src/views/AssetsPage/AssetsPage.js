@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Table, Button, Typography } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { useQuery } from '@apollo/react-hooks';
+import { Button, Table, Typography } from 'antd';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
-import { PlusOutlined } from '@ant-design/icons';
-import { openNotification } from '../../common/functions/openNotification/openNotification';
-import { messages, columns, dataSource } from './assetsData';
 import { GET_ASSETS } from './assetSchemas';
+import { columns, messages } from './assetsData';
 import './assetsPage.scss';
 
 const AssetsPage = () => {
@@ -43,7 +42,6 @@ const AssetsPage = () => {
           {formatMessage(messages.create)}
         </Button>
       </div>
-      {console.log('Data', columnData)}
       <Table
         columns={columns}
         dataSource={columnData}

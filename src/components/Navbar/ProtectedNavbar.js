@@ -11,8 +11,7 @@ import './navbar.scss';
 const ProtectedNavbar = () => {
   const [current, setCurrent] = useState(0);
   const history = useHistory();
-  const [cookies, setCookie, removeCookie] = useCookies();
-  console.log('rmCookie', removeCookie);
+  const [_, __, removeCookie] = useCookies();
   const { Item } = Menu;
   return (
     <Menu
@@ -21,7 +20,7 @@ const ProtectedNavbar = () => {
       mode='horizontal'
       className='menuContainer'>
       <Item key='logo'>
-        <img src={Logo} width={100} height={40} />
+        <img src={Logo} width={100} height={40} alt='logo' />
       </Item>
       <Item className='menuButton' key='devices'>
         <Button
@@ -29,6 +28,14 @@ const ProtectedNavbar = () => {
           type='link'
           onClick={() => history.push('/devices')}>
           Devices
+        </Button>
+      </Item>
+      <Item key='categories'>
+        <Button
+          size='small'
+          type='link'
+          onClick={() => history.push('/deviceCategories')}>
+          Device categories
         </Button>
       </Item>
       <Item key='assets'>
@@ -39,12 +46,7 @@ const ProtectedNavbar = () => {
           Assets
         </Button>
       </Item>
-      <Item key='contact'>Devices</Item>
-      {/* <Item key='login'>
-          <Button size='large' onClick={() => history.push('/login')}>
-            Login
-          </Button>
-        </Item> */}
+
       <Item key='create'>
         <Button
           type='primary'

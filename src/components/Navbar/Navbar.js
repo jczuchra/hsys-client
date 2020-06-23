@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PublicNavbar from './PublicNavbar';
 import ProtectedNavbar from './ProtectedNavbar';

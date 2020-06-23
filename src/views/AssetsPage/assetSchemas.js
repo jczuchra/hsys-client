@@ -15,7 +15,7 @@ export const GET_ASSETS = gql`
 `;
 
 export const DELETE_ASSET = gql`
-  mutation deleteAsset($id: ID) {
+  mutation deleteAsset($id: ID!) {
     deleteAsset(id: $id) {
       message
       success
@@ -46,6 +46,20 @@ export const EDIT_ASSET = gql`
         quantity
       }
       error
+    }
+  }
+`;
+
+export const CREATE_ASSET = gql`
+  mutation createAsset($name: String!, $description: String, $quantity: Int!) {
+    addAsset(name: $name, description: $description, quantity: $quantity) {
+      message
+      asset {
+        id
+        name
+        quantity
+        description
+      }
     }
   }
 `;

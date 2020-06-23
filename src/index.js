@@ -1,41 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import ApolloClient from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { CookiesProvider } from 'react-cookie';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import 'antd/dist/antd.css';
 
-import ApolloClient from 'apollo-client';
-
-const link = createHttpLink({
+const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
   credentials: 'include',
 });
 
-export const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link,
+const authLink = new ApolloLink((operation, forward) => {
+  return forward(operation).map((response) => {
+    if (response.data) {
+      const isEmpty = !Object.values(response.data).some((x) => x !== null);
+      if (isEmpty) window.location = '/';
+    }
+    return response;
+  });
 });
 
-// const authLink = setContext((_, { headers }) => {
-//   // get the authentication token from local storage if it exists
-//   const token = localStorage.getItem('accessToken');
-//   console.log('Token', token);
-//   // return the headers to the context so httpLink can read them
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    // window.location = '/error?error=500';
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  }
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: authLink.concat(errorLink.concat(httpLink)),
+});
 
 ReactDOM.render(
   <React.StrictMode>

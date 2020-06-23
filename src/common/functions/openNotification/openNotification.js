@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, notification } from 'antd';
+import { notification } from 'antd';
 import { SmileOutlined, MehOutlined, FrownOutlined } from '@ant-design/icons';
 import './notification.scss';
 

@@ -1,26 +1,11 @@
 import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import { Button, Typography, Breadcrumb, Form, Input, InputNumber } from 'antd';
-import gql from 'graphql-tag';
+import { Form, Input, InputNumber } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import CreateContainer from '../../../components/CreateContainer/CreateContainer';
 import { openNotification } from '../../../common/functions/openNotification';
-import { GET_ASSETS } from '../assetSchemas';
-
-const CREATE_ASSET = gql`
-  mutation createAsset($name: String!, $description: String, $quantity: Int!) {
-    addAsset(name: $name, description: $description, quantity: $quantity) {
-      message
-      asset {
-        id
-        name
-        quantity
-        description
-      }
-    }
-  }
-`;
+import { GET_ASSETS, CREATE_ASSET } from '../assetSchemas';
 
 const CreateAsset = () => {
   const { formatMessage } = useIntl();

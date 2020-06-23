@@ -1,10 +1,6 @@
 import React from 'react';
-import { Space, Popover, Button } from 'antd';
-import {
-  DeleteOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-} from '@ant-design/icons';
+import { Popover, Button } from 'antd';
+import { EllipsisOutlined } from '@ant-design/icons';
 import styles from './actionMenu.module.scss';
 
 const text = <span>Actions</span>;

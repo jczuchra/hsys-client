@@ -1,0 +1,8 @@
+@import '../../common/styles.scss';
+
+.menuItem {
+  color: black !important;
+  &:hover {
+    color: $link !important;
+  }
+}
