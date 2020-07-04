@@ -107,3 +107,16 @@ export const ADD_DEVICE_CATEGORY = gql`
     }
   }
 `;
+
+export const GET_DEVICE = gql`
+  query GetDevice($id: ID!) {
+    getDevice(id: $id) {
+      id
+      name
+      location
+      productionDate
+      lastMaintenance
+      categoryId
+    }
+  }
+`;

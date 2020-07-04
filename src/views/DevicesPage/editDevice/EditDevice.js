@@ -9,7 +9,9 @@ import {
   EDIT_DEVICE,
   GET_CATEGORIES,
   GET_ALL_DEVICES,
+  GET_DEVICE,
 } from '../devicesSchemas';
+import moment from 'moment';
 import styles from './editDevice.module.scss';
 
 const config = {
@@ -26,6 +28,19 @@ const EditDevice = ({ value = {}, onChange }) => {
 
   const { Option } = Select;
 
+  const {
+    loading: deviceLoading,
+    error: deviceError,
+    data: deviceData,
+  } = useQuery(GET_DEVICE, { variables: { id: deviceId } });
+
+  const getDevice = (deviceData && deviceData.getDevice) || {};
+  const {
+    name,
+    lastMaintenance,
+    productionDate,
+    location: deviceLocation,
+  } = getDevice;
   const [
     editDevice,
     { data, loading: mutationLoading, error: mutationError },
@@ -57,18 +72,31 @@ const EditDevice = ({ value = {}, onChange }) => {
 
   const formItems = (
     <React.Fragment>
-      <Form.Item name='name' label='Name' rules={[{ required: false }]}>
+      <Form.Item
+        initialValue={name}
+        name='name'
+        label='Name'
+        rules={[{ required: false }]}>
         <Input />
       </Form.Item>
-      <Form.Item name='productionDate' label='Production date' {...config}>
+      <Form.Item
+        initialValue={moment(productionDate)}
+        name='productionDate'
+        label='Production date'
+        {...config}>
         <DatePicker />
       </Form.Item>
-      <Form.Item name='lastMaintenance' label='Last maintenance' {...config}>
+      <Form.Item
+        initialValue={moment(lastMaintenance)}
+        name='lastMaintenance'
+        label='Last maintenance'
+        {...config}>
         <DatePicker />
       </Form.Item>
       <Form.Item
         name='location'
         label='Location'
+        initialValue={deviceLocation}
         rules={[{ required: false, type: 'number' }]}>
         <InputNumber />
       </Form.Item>
@@ -77,11 +105,9 @@ const EditDevice = ({ value = {}, onChange }) => {
         label='Category'
         rules={[{ required: false }]}>
         <Select
+          disabled
           defaultValue='Select category'
           className={styles.select}
-          disabled={
-            categoryData && !categoryData.allDeviceCategories.allElements.length
-          }
           value={category}
           onChange={(newCategory) => setCategory(newCategory)}>
           {categoryData &&
@@ -92,16 +118,19 @@ const EditDevice = ({ value = {}, onChange }) => {
       </Form.Item>
     </React.Fragment>
   );
+
   return (
-    <CreateContainer
-      formItems={formItems}
-      //These 2 below are for breadcrumb
-      backTo={formatMessage(messages.backTo)}
-      currentPage={formatMessage(messages.currentPage)}
-      title={formatMessage(messages.currentPage)}
-      onSubmit={editDevice}
-      id={deviceId}
-    />
+    !deviceLoading && (
+      <CreateContainer
+        formItems={formItems}
+        //These 2 below are for breadcrumb
+        backTo={formatMessage(messages.backTo)}
+        currentPage={formatMessage(messages.currentPage)}
+        title={formatMessage(messages.currentPage)}
+        onSubmit={editDevice}
+        id={deviceId}
+      />
+    )
   );
 };
 

@@ -1,0 +1,67 @@
+@import '../../../common/styles.scss';
+
+.footerContainer {
+  margin-top: $spacing-06;
+  :global(.ant-row) {
+    margin: 0 !important;
+  }
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-03;
+  button {
+    padding-left: 0 !important;
+  }
+}
+
+.infoParagraph {
+  display: inline-block;
+  margin-left: $spacing-02;
+}
+
+.icon {
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-top: $spacing-01;
+    margin-left: 1px;
+  }
+}
+
+.facebook {
+  margin-bottom: $spacing-02;
+  svg {
+    fill: #4267b2 !important;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.instagram {
+  margin-bottom: $spacing-02;
+  svg {
+    fill: #d48e55 !important;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.youtube {
+  svg {
+    fill: #e62f2d !important;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+.copyright {
+  text-align: center;
+  font-size: 16px;
+  margin: $spacing-03 0;
+}
+
+.logo {
+  margin-bottom: $spacing-01;
+}

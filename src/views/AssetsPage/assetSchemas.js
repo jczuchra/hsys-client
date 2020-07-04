@@ -63,3 +63,13 @@ export const CREATE_ASSET = gql`
     }
   }
 `;
+
+export const GET_ASSET = gql`
+  query GetAsset($id: ID!) {
+    getAsset(id: $id) {
+      name
+      quantity
+      description
+    }
+  }
+`;

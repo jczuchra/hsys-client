@@ -20,7 +20,13 @@ const ProtectedNavbar = () => {
       mode='horizontal'
       className='menuContainer'>
       <Item key='logo'>
-        <img src={Logo} width={100} height={40} alt='logo' />
+        <img
+          src={Logo}
+          width={100}
+          height={40}
+          alt='logo'
+          onClick={() => history.push('/')}
+        />
       </Item>
       <Item className='menuButton' key='devices'>
         <Button

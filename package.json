@@ -12,13 +12,15 @@
     "apollo-link-context": "^1.0.20",
     "eslint-plugin-react": "^7.20.0",
     "graphql": "^15.0.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-intl": "^4.5.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-scroll": "^1.7.16"
   },
   "scripts": {
     "start": "react-scripts start",

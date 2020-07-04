@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { openNotification } from '../../common/functions/openNotification/openNotification';
+import Hands from '../../assets/hands2.jpg';
 
+import styles from './createAccountPage.module.scss';
 import './createAccountPage.scss';
 
 const CREATE_USER = gql`
@@ -32,14 +34,6 @@ const GET_ALL_DEVICE_CATEGORIES = gql`
   }
 `;
 
-const layout = {
-  labelCol: { span: 10 },
-  wrapperCol: { span: 4 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 10, span: 5 },
-};
-
 const CreateAccountPage = () => {
   const history = useHistory();
   const [
@@ -65,38 +59,41 @@ const CreateAccountPage = () => {
   };
 
   return (
-    <div className=''>
-      <Title className='title'>Create Account</Title>
-      <Form
-        {...layout}
-        name='basic'
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}>
-        <Form.Item
-          label='Email'
-          name='email'
-          rules={[{ required: true, message: 'Please input your email!' }]}>
-          <Input />
-        </Form.Item>
+    <div className={styles.createContainer}>
+      <img src={Hands} height='100%' width='50%' />
+      <div className={styles.formContainer}>
+        <Title className={styles.title}>Create Account</Title>
+        <Form
+          name='basic'
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}>
+          <Form.Item
+            name='email'
+            wrapperCol={{ span: 12, offset: 6 }}
+            rules={[{ required: true, message: 'Please input your email!' }]}>
+            <Input placeholder='Email' />
+          </Form.Item>
 
-        <Form.Item
-          label='Password'
-          name='password'
-          rules={[{ required: true, message: 'Please input your password!' }]}>
-          <Input.Password />
-        </Form.Item>
+          <Form.Item
+            name='password'
+            wrapperCol={{ span: 12, offset: 6 }}
+            rules={[
+              { required: true, message: 'Please input your password!' },
+            ]}>
+            <Input.Password placeholder='Password' />
+          </Form.Item>
 
-        <Form.Item {...tailLayout} name='remember' valuePropName='checked'>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type='primary' htmlType='submit'>
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+            <Button
+              type='primary'
+              htmlType='submit'
+              className={styles.loginButton}>
+              Create account
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

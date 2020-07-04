@@ -27,14 +27,17 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    // window.location = '/error?error=500';
+    // window.location = `/error?error=500&message=${graphQLErrors[0]}`;
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       )
     );
   }
-  if (networkError) console.log(`[Network error]: ${networkError}`);
+  if (networkError) {
+    // window.location = `/error?error=500&message=${networkError}`;
+    console.log(`[Network error]: ${networkError}`);
+  }
 });
 
 export const client = new ApolloClient({

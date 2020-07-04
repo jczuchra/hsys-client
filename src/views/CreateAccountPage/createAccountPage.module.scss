@@ -1,0 +1,32 @@
+@import '../../common/styles.scss';
+
+.createContainer {
+  display: flex;
+}
+
+.formContainer {
+  width: 100%;
+
+  input {
+    height: 45px !important;
+    font-size: 18px;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: $spacing-09 + $spacing-07;
+  font-size: 28px !important;
+  color: $gray !important;
+}
+
+.loginButton {
+  width: 100% !important;
+  height: 50px !important;
+}
+
+.infoText {
+  text-align: center;
+  margin-bottom: $spacing-01 !important;
+}

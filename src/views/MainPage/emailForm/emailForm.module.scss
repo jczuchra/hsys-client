@@ -1,0 +1,67 @@
+@import '../../../common/styles.scss';
+
+.emailContainer {
+  background-image: url('../../../assets/emailImage.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 600px;
+  padding-top: 30px;
+}
+
+.formContainer {
+  :global {
+    .ant-input,
+    .ant-input-number {
+      border: none;
+      min-height: 50px;
+      max-width: 430px;
+      min-width: 430px;
+      font-size: 20px;
+    }
+
+    .ant-form-item-label {
+      margin-top: 10px;
+    }
+
+    .ant-form-item-required {
+      &:before {
+        color: white;
+      }
+    }
+  }
+}
+
+.buttonContainer {
+  :global(.ant-form-item-control-input-content) {
+    min-width: 430px;
+    min-width: 430px;
+  }
+  text-align: center;
+}
+
+.titleContainer {
+  :global(.ant-form-item-control-input-content) {
+    min-width: 430px;
+    min-width: 430px;
+  }
+  .subTitle {
+    color: $gray;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 44px;
+  }
+  text-align: center;
+}
+
+.sendButton {
+  width: 130px !important;
+  height: 50px !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
