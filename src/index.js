@@ -11,7 +11,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import 'antd/dist/antd.css';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://hsys-server.herokuapp.com/graphql',
   credentials: 'include',
 });
 
