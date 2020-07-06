@@ -53,7 +53,7 @@ const ProtectedNavbar = () => {
         </Button>
       </Item>
 
-      <Item key='create'>
+      <Item key='logout'>
         <Button
           type='primary'
           size='large'

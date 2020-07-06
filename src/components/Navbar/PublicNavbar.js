@@ -39,7 +39,7 @@ const PublicNavbar = () => {
           src={Logo}
           width={100}
           height={40}
-          onClick={() => history.push('/devices')}
+          onClick={() => history.push('/')}
         />
       </Item>
       <Item className='menuButton' key='mail'>

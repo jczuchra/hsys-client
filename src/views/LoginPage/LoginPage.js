@@ -27,7 +27,7 @@ const CreateAccountPage = () => {
     onCompleted: (data) => {
       if (data.login.status) {
         openNotification('Login', data.login.message, 'success');
-        return (window.location = '/');
+        return history.push('/');
       }
       openNotification('Login', data.login.message, 'error');
     },
