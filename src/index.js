@@ -11,7 +11,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import 'antd/dist/antd.css';
 
 const httpLink = createHttpLink({
-  uri: 'https://127.0.0.1/graphql',
+  uri: 'https://hsys-server.herokuapp.com/graphql',
   credentials: 'include',
 });
 
@@ -30,7 +30,7 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    window.location = `/error?error=500&message=${graphQLErrors[0]}`;
+    // window.location = `/error?error=500&message=${graphQLErrors[0]}`;
 
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(
@@ -39,7 +39,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     );
   }
   if (networkError) {
-    window.location = `/error?error=500&message=${networkError}`;
+    // window.location = `/error?error=500&message=${networkError}`;
     console.log(`[Network error]: ${networkError}`);
   }
 });
