@@ -58,7 +58,7 @@ const ProtectedNavbar = () => {
           type='primary'
           size='large'
           onClick={() => {
-            removeCookie('refresh-token');
+            removeCookie('loggedIn');
             openNotification('Logout', "You've been logged out succesfully!");
             history.push('/');
           }}>
