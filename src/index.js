@@ -11,7 +11,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import 'antd/dist/antd.css';
 
 const httpLink = createHttpLink({
-  uri: 'https://hsys-server.herokuapp.com/graphql',
+  uri: 'https://127.0.0.1/graphql',
   credentials: 'include',
 });
 
@@ -19,7 +19,10 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
     if (response.data) {
       const isEmpty = !Object.values(response.data).some((x) => x !== null);
-      if (isEmpty) window.location = '/';
+      if (isEmpty) {
+        document.cookie = 'loggedIn= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+        window.location = '/';
+      }
     }
     return response;
   });
@@ -27,7 +30,8 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    // window.location = `/error?error=500&message=${graphQLErrors[0]}`;
+    window.location = `/error?error=500&message=${graphQLErrors[0]}`;
+
     graphQLErrors.map(({ message, locations, path }) =>
       console.log(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
@@ -35,7 +39,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     );
   }
   if (networkError) {
-    // window.location = `/error?error=500&message=${networkError}`;
+    window.location = `/error?error=500&message=${networkError}`;
     console.log(`[Network error]: ${networkError}`);
   }
 });

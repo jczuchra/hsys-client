@@ -30,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "extract-messages": "SET NODE_ENV=production && extract-messages -l=en,es -o i18n './src/**/*.js'",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "update-public": "cp -r build/. ../server/src/public"
   },
   "eslintConfig": {
     "extends": "react-app"

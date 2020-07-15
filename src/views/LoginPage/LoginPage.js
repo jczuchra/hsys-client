@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import Hands from '../../assets/hands.jpg';
 import { openNotification } from '../../common/functions/openNotification/openNotification';
+import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
 import styles from './loginPage.module.scss';
@@ -20,6 +21,7 @@ const LOGIN_USER = gql`
 
 const CreateAccountPage = () => {
   const history = useHistory();
+  const [cookies, setCookie] = useCookies();
   const [
     loginUser,
     { data, loading: mutationLoading, error: mutationError },
@@ -27,6 +29,7 @@ const CreateAccountPage = () => {
     onCompleted: (data) => {
       if (data.login.status) {
         openNotification('Login', data.login.message, 'success');
+        setCookie('loggedIn', true);
         return history.push('/');
       }
       openNotification('Login', data.login.message, 'error');

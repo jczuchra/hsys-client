@@ -21,7 +21,7 @@ import {
 
 const App = () => {
   const [cookies] = useCookies();
-  const isAuthenticated = cookies['refresh-token'];
+  const isAuthenticated = cookies['loggedIn'];
   return (
     <IntlProvider>
       <div className='App'>
