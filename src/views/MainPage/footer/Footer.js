@@ -27,10 +27,14 @@ const Footer = () => {
           <div className={styles.infoContainer}>
             <h3>Documents</h3>
             <div>
-              <Button type='link'>Regulations of user</Button>
+              <a href='./docs/terms.pdf' download>
+                Regulations of user
+              </a>
             </div>
             <div>
-              <Button type='link'>Privacy policy</Button>
+              <a href='./docs/privacy.pdf' download>
+                Privacy policy
+              </a>
             </div>
           </div>
         </Col>

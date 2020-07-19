@@ -10,7 +10,7 @@ import styles from './createAccountPage.module.scss';
 import './createAccountPage.scss';
 
 const CREATE_USER = gql`
-  mutation RegisterUser($email: String!, $password: String!) {
+  mutation registerUser($email: String!, $password: String!) {
     register(email: $email, password: $password) {
       status
       message

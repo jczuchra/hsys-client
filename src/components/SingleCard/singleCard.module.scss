@@ -1,0 +1,32 @@
+@import '../../common/styles.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: $spacing-06 15%;
+  //   border: 2px solid rgba(201, 237, 255, 1);
+  padding: $spacing-04;
+}
+
+.descriptionContainer {
+  margin: $spacing-06;
+}
+
+.image {
+  height: 200px;
+}
+
+.title,
+.description {
+  text-align: left;
+}
+
+.rightTitle,
+.rightDescription {
+  text-align: right;
+}
+
+.right {
+  @extend .container;
+  justify-content: flex-end;
+}

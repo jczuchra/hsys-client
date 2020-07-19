@@ -1,0 +1,34 @@
+.container {
+  //   height: 50vh;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.topImage {
+  height: 250px;
+  margin-top: 25px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 5% 10%;
+
+  .card {
+    max-width: 360px;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 1.5px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 237, 255, 1) 10%,
+    rgba(201, 237, 255, 1) 80%,
+    rgba(255, 255, 255, 1) 90%
+  );
+  margin-top: 25px;
+}

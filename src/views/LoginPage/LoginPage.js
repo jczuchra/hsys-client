@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import styles from './loginPage.module.scss';
 
 const LOGIN_USER = gql`
-  mutation LoginUser($email: String!, $password: String!) {
+  mutation loginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       status
       message
@@ -29,7 +29,9 @@ const CreateAccountPage = () => {
     onCompleted: (data) => {
       if (data.login.status) {
         openNotification('Login', data.login.message, 'success');
-        setCookie('loggedIn', true);
+        setCookie('loggedIn', true, {
+          maxAge: 60 * 60 * 60 * 12,
+        });
         return history.push('/');
       }
       openNotification('Login', data.login.message, 'error');

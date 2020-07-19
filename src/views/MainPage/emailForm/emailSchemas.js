@@ -6,9 +6,18 @@ export const CONTACT_EMAIL = gql`
     $email: String
     $phone: Int!
     $message: String!
+    $token: String!
   ) {
-    contactEmail(name: $name, email: $email, phone: $phone, message: $message) {
+    contactEmail(
+      name: $name
+      email: $email
+      phone: $phone
+      message: $message
+      token: $token
+    ) {
       message
+      errors
+      success
     }
   }
 `;

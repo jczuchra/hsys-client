@@ -95,7 +95,7 @@ export const GET_CATEGORIES = gql`
 `;
 
 export const ADD_DEVICE_CATEGORY = gql`
-  mutation CreateCategory($name: String) {
+  mutation createCategory($name: String) {
     createDeviceCategory(name: $name) {
       message
       success

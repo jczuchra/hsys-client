@@ -43,9 +43,24 @@ const PublicNavbar = () => {
         />
       </Item>
       <Item className='menuButton' key='mail'>
-        Functions
+        <a
+          onClick={() => {
+            history.push('/');
+            scrollTo('functions');
+          }}>
+          Functions
+        </a>
       </Item>
-      <Item key='aboutus'>About us</Item>
+      <Item key='aboutus'>
+        <a
+          onClick={() => {
+            history.push('/');
+            scrollTo('aboutUs');
+            // window.onload = () => scrollTo('aboutUs');
+          }}>
+          About us
+        </a>
+      </Item>
       <Item key='contact'>
         <a
           onClick={() => {
