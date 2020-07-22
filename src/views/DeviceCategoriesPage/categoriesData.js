@@ -6,34 +6,58 @@ import DeviceCategoriesMenu from './deviceCategoriesMenu/deviceCategoriesMenu';
 
 export const messages = defineMessages({
   title: {
-    id: 'client.src.views.devicesPage.devicesData.title',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.title',
     defaultMessage: 'Device categories',
   },
   count: {
-    id: 'client.src.views.devicesPage.devicesData.count',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.count',
     defaultMessage: 'Count: {count}',
   },
   create: {
-    id: 'client.src.views.devicesPage.devicesData.create',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.create',
     defaultMessage: 'Add',
   },
   category: {
-    id: 'client.src.views.devicesPage.devicesData.createCategory',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.createCategory',
     defaultMessage: 'Add device',
   },
   device: {
-    id: 'client.src.views.devicesPage.devicesData.createDevice',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.createDevice',
     defaultMessage: 'Add device category',
   },
   categories: {
-    id: 'client.src.views.devicesPage.devicesData.categories',
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.categories',
     defaultMessage: 'Categories',
+  },
+  name: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.name',
+    defaultMessage: 'Name',
+  },
+  location: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.location',
+    defaultMessage: 'Location',
+  },
+  productionDate: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.productionDate',
+    defaultMessage: 'Production date',
+  },
+  lastMaintenance: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.lastMaintenance',
+    defaultMessage: 'Last maintenance',
+  },
+  quantity: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.quantity',
+    defaultMessage: 'Quantity',
+  },
+  description: {
+    id: 'client.src.views.deviceCategoriesPage.categoriesData.description',
+    defaultMessage: 'Description',
   },
 });
 
-export const columns = (history) => [
+export const columns = (history, formatMessage) => [
   {
-    title: 'Name',
+    title: formatMessage(messages.name),
     dataIndex: 'name',
     key: 'name',
     render: (text, record) => (
@@ -47,13 +71,13 @@ export const columns = (history) => [
     ),
   },
   {
-    title: 'Quantity',
+    title: formatMessage(messages.quantity),
     dataIndex: 'quantity',
     key: 'quantity',
     width: '20%',
   },
   {
-    title: 'Description',
+    title: formatMessage(messages.description),
     dataIndex: 'description',
     width: '40%',
     key: 'description',
@@ -66,26 +90,26 @@ export const columns = (history) => [
   },
 ];
 
-export const detailsColumns = [
+export const detailsColumns = (formatMessage) => [
   {
-    title: 'Name',
+    title: formatMessage(messages.name),
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Location',
+    title: formatMessage(messages.location),
     dataIndex: 'location',
     key: 'location',
     width: '20%',
   },
   {
-    title: 'Production Date',
+    title: formatMessage(messages.productionDate),
     dataIndex: 'productionDate',
     width: '20%',
     key: 'productionDate',
   },
   {
-    title: 'Last maintenance',
+    title: formatMessage(messages.lastMaintenance),
     dataIndex: 'lastMaintenance',
     width: '20%',
     key: 'lastMaintenance',
