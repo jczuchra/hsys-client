@@ -13,7 +13,7 @@ import './createAccountPage.scss';
 
 const CreateAccountPage = () => {
   const history = useHistory();
-  const { formatMessages } = useIntl();
+  const { formatMessage } = useIntl();
   const [
     registerUser,
     { data, loading: mutationLoading, error: mutationError },
@@ -41,7 +41,7 @@ const CreateAccountPage = () => {
       <img src={Hands} height='100%' width='50%' />
       <div className={styles.formContainer}>
         <Title className={styles.title}>
-          {formatMessages(messages.createAccount)}
+          {formatMessage(messages.createAccount)}
         </Title>
         <Form
           name='basic'
@@ -54,10 +54,10 @@ const CreateAccountPage = () => {
             rules={[
               {
                 required: true,
-                message: formatMessages(messages.emailWarning),
+                message: formatMessage(messages.emailWarning),
               },
             ]}>
-            <Input placeholder={formatMessages(messages.email)} />
+            <Input placeholder={formatMessage(messages.email)} />
           </Form.Item>
 
           <Form.Item
@@ -66,10 +66,10 @@ const CreateAccountPage = () => {
             rules={[
               {
                 required: true,
-                message: formatMessages(messages.passwordWarning),
+                message: formatMessage(messages.passwordWarning),
               },
             ]}>
-            <Input.Password placeholder={formatMessages(messages.password)} />
+            <Input.Password placeholder={formatMessage(messages.password)} />
           </Form.Item>
 
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
@@ -77,7 +77,7 @@ const CreateAccountPage = () => {
               type='primary'
               htmlType='submit'
               className={styles.loginButton}>
-              {formatMessages(messages.createAccount)}
+              {formatMessage(messages.createAccount)}
             </Button>
           </Form.Item>
         </Form>
