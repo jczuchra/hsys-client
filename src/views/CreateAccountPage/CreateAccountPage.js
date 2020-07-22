@@ -1,41 +1,19 @@
 import React from 'react';
-import { Input, Typography, Form, Checkbox, Button } from 'antd';
+import { Input, Typography, Form, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import gql from 'graphql-tag';
+
 import { useMutation } from '@apollo/react-hooks';
+import { useIntl, defineMessages } from 'react-intl';
 import { openNotification } from '../../common/functions/openNotification/openNotification';
 import Hands from '../../assets/hands2.jpg';
+import { CREATE_USER } from './createAccountPageSchema';
 
 import styles from './createAccountPage.module.scss';
 import './createAccountPage.scss';
 
-const CREATE_USER = gql`
-  mutation registerUser($email: String!, $password: String!) {
-    register(email: $email, password: $password) {
-      status
-      message
-    }
-  }
-`;
-
-const GET_ALL_DEVICE_CATEGORIES = gql`
-  query allDeviceCategories {
-    allDeviceCategories {
-      allElements {
-        id
-        name
-        quantity
-      }
-      info {
-        success
-        message
-      }
-    }
-  }
-`;
-
 const CreateAccountPage = () => {
   const history = useHistory();
+  const { formatMessages } = useIntl();
   const [
     registerUser,
     { data, loading: mutationLoading, error: mutationError },
@@ -62,7 +40,9 @@ const CreateAccountPage = () => {
     <div className={styles.createContainer}>
       <img src={Hands} height='100%' width='50%' />
       <div className={styles.formContainer}>
-        <Title className={styles.title}>Create Account</Title>
+        <Title className={styles.title}>
+          {formatMessages(messages.createAccount)}
+        </Title>
         <Form
           name='basic'
           initialValues={{ remember: true }}
@@ -71,17 +51,25 @@ const CreateAccountPage = () => {
           <Form.Item
             name='email'
             wrapperCol={{ span: 12, offset: 6 }}
-            rules={[{ required: true, message: 'Please input your email!' }]}>
-            <Input placeholder='Email' />
+            rules={[
+              {
+                required: true,
+                message: formatMessages(messages.emailWarning),
+              },
+            ]}>
+            <Input placeholder={formatMessages(messages.email)} />
           </Form.Item>
 
           <Form.Item
             name='password'
             wrapperCol={{ span: 12, offset: 6 }}
             rules={[
-              { required: true, message: 'Please input your password!' },
+              {
+                required: true,
+                message: formatMessages(messages.passwordWarning),
+              },
             ]}>
-            <Input.Password placeholder='Password' />
+            <Input.Password placeholder={formatMessages(messages.password)} />
           </Form.Item>
 
           <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
@@ -89,7 +77,7 @@ const CreateAccountPage = () => {
               type='primary'
               htmlType='submit'
               className={styles.loginButton}>
-              Create account
+              {formatMessages(messages.createAccount)}
             </Button>
           </Form.Item>
         </Form>
@@ -99,3 +87,26 @@ const CreateAccountPage = () => {
 };
 
 export default CreateAccountPage;
+
+const messages = defineMessages({
+  createAccount: {
+    id: 'client.src.views.createAccountPage.createAccountPage.createAccount',
+    defaultMessage: 'Create account',
+  },
+  password: {
+    id: 'client.src.views.createAccountPage.createAccountPage.password',
+    defaultMessage: 'Password',
+  },
+  passwordWarning: {
+    id: 'client.src.views.createAccountPage.createAccountPage.passwordWarning',
+    defaultMessage: 'Please input your password!',
+  },
+  email: {
+    id: 'client.src.views.createAccountPage.createAccountPage.email',
+    defaultMessage: 'Email',
+  },
+  emailWarning: {
+    id: 'client.src.views.createAccountPage.createAccountPage.emailWarning',
+    defaultMessage: 'Please input your email!',
+  },
+});

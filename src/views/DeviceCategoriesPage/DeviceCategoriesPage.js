@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { GET_CATEGORIES } from './categoriesSchemas';
 import { columns, messages } from './categoriesData';
 import AddDeviceCategory from '../DevicesPage/addDeviceCategory/AddDeviceCategory';
-// import './devicesPage.scss';
 
 const DeviceCategoriesPage = () => {
   const history = useHistory();
@@ -70,7 +69,7 @@ const DeviceCategoriesPage = () => {
         </Dropdown>
       </div>
       <Table
-        columns={columns(history)}
+        columns={columns(history, formatMessage)}
         dataSource={columnData}
         loading={loading}
         className='tableContainer'

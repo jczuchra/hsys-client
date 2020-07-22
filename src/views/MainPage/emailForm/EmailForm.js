@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Form, Input, InputNumber, Button, Spin } from 'antd';
+import { defineMessages, useIntl } from 'react-intl';
 import { useMutation } from '@apollo/react-hooks';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { CONTACT_EMAIL } from './emailSchemas';
@@ -24,6 +25,7 @@ const validateMessages = {
 };
 
 const EmailForm = () => {
+  const { formatMessage } = useIntl();
   const formRef = useRef();
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [localToken, setLocalToken] = useState();
@@ -36,7 +38,7 @@ const EmailForm = () => {
       setDisabledForm(false);
       formRef.current.resetFields();
       openNotification(
-        'Email',
+        formatMessage(messages.email),
         data.contactEmail.message,
         data.contactEmail.success ? 'success' : 'error'
       );
@@ -65,31 +67,45 @@ const EmailForm = () => {
         <Form.Item
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}
           className={styles.titleContainer}>
-          <h3 className={styles.subTitle}>Do you have any questions?</h3>
-          <h1 className={styles.title}>Contact us!</h1>
+          <h3 className={styles.subTitle}>
+            {formatMessage(messages.questions)}
+          </h3>
+          <h1 className={styles.title}>{formatMessage(messages.contactUs)}</h1>
         </Form.Item>
         <Form.Item
           name='name'
           rules={[{ required: true }]}
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
-          <Input placeholder='Name' disabled={disabledForm} />
+          <Input
+            placeholder={formatMessage(messages.name)}
+            disabled={disabledForm}
+          />
         </Form.Item>
         <Form.Item
           name='email'
           rules={[{ type: 'email' }]}
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
-          <Input placeholder='Email' disabled={disabledForm} />
+          <Input
+            placeholder={formatMessage(messages.email)}
+            disabled={disabledForm}
+          />
         </Form.Item>
         <Form.Item
           name='phone'
           rules={[{ type: 'number' }]}
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
-          <InputNumber placeholder='Phone number' disabled={disabledForm} />
+          <InputNumber
+            placeholder={formatMessage(messages.phoneNumber)}
+            disabled={disabledForm}
+          />
         </Form.Item>
         <Form.Item
           name='message'
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
-          <Input.TextArea placeholder='Message' disabled={disabledForm} />
+          <Input.TextArea
+            placeholder={formatMessage(messages.message)}
+            disabled={disabledForm}
+          />
         </Form.Item>
         <Form.Item
           wrapperCol={{ ...layout.wrapperCol, offset: 6 }}
@@ -100,7 +116,7 @@ const EmailForm = () => {
             size='large'
             disabled={disabledForm}
             className={styles.sendButton}>
-            SEND
+            {formatMessage(messages.send)}
           </Button>
           {mutationLoading && <Spin size='large' className={styles.spinner} />}
         </Form.Item>
@@ -109,5 +125,36 @@ const EmailForm = () => {
     </div>
   );
 };
+
+const messages = defineMessages({
+  send: {
+    id: 'client.src.views.mainPage.emailForm.send',
+    defaultMessage: 'SEND',
+  },
+  message: {
+    id: 'client.src.views.mainPage.emailForm.message',
+    defaultMessage: 'Message',
+  },
+  phoneNumber: {
+    id: 'client.src.views.mainPage.emailForm.phoneNumber',
+    defaultMessage: 'Phone number',
+  },
+  email: {
+    id: 'client.src.views.mainPage.emailForm.email',
+    defaultMessage: 'Email',
+  },
+  name: {
+    id: 'client.src.views.mainPage.emailForm.name',
+    defaultMessage: 'Name',
+  },
+  contactUs: {
+    id: 'client.src.views.mainPage.emailForm.contactUs',
+    defaultMessage: 'Contact us!',
+  },
+  questions: {
+    id: 'client.src.views.mainPage.emailForm.questions',
+    defaultMessage: 'Do you have any questions?',
+  },
+});
 
 export default EmailForm;

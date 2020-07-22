@@ -33,16 +33,19 @@ const CreateAsset = () => {
   });
   const formItems = (
     <React.Fragment>
-      <Form.Item name='name' label='Name' rules={[{ required: true }]}>
+      <Form.Item
+        name='name'
+        label={formatMessage(messages.name)}
+        rules={[{ required: true }]}>
         <Input />
       </Form.Item>
       <Form.Item
         name='quantity'
-        label='Quantity'
+        label={formatMessage(messages.quantity)}
         rules={[{ type: 'number', min: 0, max: 100000 }]}>
         <InputNumber />
       </Form.Item>
-      <Form.Item name='description' label='Description'>
+      <Form.Item name='description' label={formatMessage(messages.description)}>
         <Input.TextArea />
       </Form.Item>
     </React.Fragment>
@@ -71,7 +74,19 @@ const messages = defineMessages({
     defaultMessage: 'Create asset',
   },
   save: {
-    id: 'client.src.components.createContainer.create',
+    id: 'client.src.views.AssetsPage.createAsset.save',
     defaultMessage: 'Save',
+  },
+  quantity: {
+    id: 'client.src.views.AssetsPage.createAsset.quantity',
+    defaultMessage: 'Quantity',
+  },
+  description: {
+    id: 'client.src.views.AssetsPage.createAsset.description',
+    defaultMessage: 'Description',
+  },
+  name: {
+    id: 'client.src.views.AssetsPage.createAsset.name',
+    defaultMessage: 'Name',
   },
 });

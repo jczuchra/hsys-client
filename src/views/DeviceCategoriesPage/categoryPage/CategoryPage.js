@@ -6,8 +6,6 @@ import { useIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { DEVICES_BY_CATEGORY } from '../categoriesSchemas';
 import { detailsColumns, messages } from '../categoriesData';
-// import AddDeviceCategory from '../DevicesPage/addDeviceCategory/AddDeviceCategory';
-// import './devicesPage.scss';
 
 const DeviceCategoriesPage = () => {
   const history = useHistory();
@@ -85,18 +83,11 @@ const DeviceCategoriesPage = () => {
         </Dropdown>
       </div>
       <Table
-        columns={detailsColumns}
+        columns={detailsColumns(formatMessage)}
         dataSource={columnData}
         loading={loading}
         className='tableContainer'
       />
-      {/* <AddDeviceCategory
-        visible={visible}
-        setVisible={setVisible}
-        onCancel={() => {
-          setVisible(false);
-        }} */}
-      {/* /> */}
     </div>
   );
 };

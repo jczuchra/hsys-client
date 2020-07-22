@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-
+import { useIntl, defineMessages } from 'react-intl';
 import { Menu, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import {
-  Link,
-  DirectLink,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from 'react-scroll';
+import { scroller } from 'react-scroll';
 import Logo from '../../assets/logo-small.svg';
 
 import './navbar.scss';
 
 const PublicNavbar = () => {
+  const { formatMessage } = useIntl();
   const [current, setCurrent] = useState(0);
   const history = useHistory();
   const { Item } = Menu;
@@ -48,7 +41,7 @@ const PublicNavbar = () => {
             history.push('/');
             scrollTo('functions');
           }}>
-          Functions
+          {formatMessage(messages.functions)}
         </a>
       </Item>
       <Item key='aboutus'>
@@ -58,7 +51,7 @@ const PublicNavbar = () => {
             scrollTo('aboutUs');
             // window.onload = () => scrollTo('aboutUs');
           }}>
-          About us
+          {formatMessage(messages.aboutUs)}
         </a>
       </Item>
       <Item key='contact'>
@@ -67,12 +60,12 @@ const PublicNavbar = () => {
             history.push('/');
             scrollTo('contact');
           }}>
-          Contact
+          {formatMessage(messages.contact)}
         </a>
       </Item>
       <Item key='login'>
         <Button size='large' onClick={() => history.push('/login')}>
-          Login
+          {formatMessage(messages.login)}
         </Button>
       </Item>
       <Item key='create'>
@@ -80,7 +73,7 @@ const PublicNavbar = () => {
           type='primary'
           size='large'
           onClick={() => history.push('/createAccount')}>
-          Create account
+          {formatMessage(messages.createAccount)}
         </Button>
       </Item>
     </Menu>
@@ -88,3 +81,26 @@ const PublicNavbar = () => {
 };
 
 export default PublicNavbar;
+
+const messages = defineMessages({
+  createAccount: {
+    id: 'client.src.components.navbar.publicNavbar.createAccount',
+    defaultMessage: 'Create account',
+  },
+  login: {
+    id: 'client.src.components.navbar.publicNavbar.login',
+    defaultMessage: 'Login',
+  },
+  contact: {
+    id: 'client.src.components.navbar.publicNavbar.contact',
+    defaultMessage: 'Contact',
+  },
+  aboutUs: {
+    id: 'client.src.components.navbar.publicNavbar.aboutUs',
+    defaultMessage: 'About us',
+  },
+  functions: {
+    id: 'client.src.components.navbar.publicNavbar.functions',
+    defaultMessage: 'Functions',
+  },
+});

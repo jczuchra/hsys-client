@@ -18,12 +18,19 @@ import {
   DeviceCategoriesPage,
   CategoryPage,
 } from './views/index';
+import enTranslations from './translations/en.json';
+import plTranslations from './translations/pl.json';
 
 const App = () => {
   const [cookies] = useCookies();
   const isAuthenticated = cookies['loggedIn'];
+  const lang = navigator.language;
+  let messages = enTranslations;
+  if (lang === 'pl') {
+    messages = plTranslations;
+  }
   return (
-    <IntlProvider>
+    <IntlProvider defaultLocale='en' locale={lang} messages={messages}>
       <div className='App'>
         <Router>
           <Navbar isAuthenticated={isAuthenticated} />

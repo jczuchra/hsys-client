@@ -54,21 +54,21 @@ const EditAsset = () => {
       <Form.Item
         initialValue={name}
         name='name'
-        label='Name'
+        label={formatMessage(messages.name)}
         rules={[{ required: true }]}>
         <Input />
       </Form.Item>
       <Form.Item
         initialValue={quantity}
         name='quantity'
-        label='Quantity'
+        label={formatMessage(messages.quantity)}
         rules={[{ type: 'number', min: 0, max: 100000 }]}>
         <InputNumber />
       </Form.Item>
       <Form.Item
         initialValue={description}
         name='description'
-        label='Description'>
+        label={formatMessage(messages.description)}>
         <Input.TextArea />
       </Form.Item>
     </React.Fragment>
@@ -92,19 +92,31 @@ export default EditAsset;
 
 const messages = defineMessages({
   backTo: {
-    id: 'client.src.views.AssetsPage.createAsset.backTo',
+    id: 'client.src.views.AssetsPage.editAsset.backTo',
     defaultMessage: 'Assets',
   },
   currentPage: {
-    id: 'client.src.views.AssetsPage.createAsset.currentPage',
+    id: 'client.src.views.AssetsPage.editAsset.currentPage',
     defaultMessage: 'Edit asset',
   },
   save: {
-    id: 'client.src.components.createContainer.create',
+    id: 'client.src.views.AssetsPage.editAsset.create',
     defaultMessage: 'Save',
   },
   edit: {
     id: 'client.src.views.AssetsPage.editAsset.edit',
     defaultMessage: 'Edit',
+  },
+  quantity: {
+    id: 'client.src.views.AssetsPage.editAsset.quantity',
+    defaultMessage: 'Quantity',
+  },
+  description: {
+    id: 'client.src.views.AssetsPage.editAsset.description',
+    defaultMessage: 'Description',
+  },
+  name: {
+    id: 'client.src.views.AssetsPage.editAsset.name',
+    defaultMessage: 'Name',
   },
 });

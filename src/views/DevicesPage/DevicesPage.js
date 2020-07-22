@@ -69,7 +69,7 @@ const DevicesPage = () => {
         </Dropdown>
       </div>
       <Table
-        columns={columns}
+        columns={columns(formatMessage)}
         dataSource={columnData}
         loading={loading}
         className='tableContainer'

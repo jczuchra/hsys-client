@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useIntl, defineMessages } from 'react-intl';
 import { Menu, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -9,6 +9,7 @@ import { openNotification } from '../../common/functions/openNotification/openNo
 import './navbar.scss';
 
 const ProtectedNavbar = () => {
+  const { formatMessage } = useIntl();
   const [current, setCurrent] = useState(0);
   const history = useHistory();
   const [_, __, removeCookie] = useCookies();
@@ -33,7 +34,7 @@ const ProtectedNavbar = () => {
           size='small'
           type='link'
           onClick={() => history.push('/devices')}>
-          Devices
+          {formatMessage(messages.devices)}
         </Button>
       </Item>
       <Item key='categories'>
@@ -41,7 +42,7 @@ const ProtectedNavbar = () => {
           size='small'
           type='link'
           onClick={() => history.push('/deviceCategories')}>
-          Device categories
+          {formatMessage(messages.categories)}
         </Button>
       </Item>
       <Item key='assets'>
@@ -49,7 +50,7 @@ const ProtectedNavbar = () => {
           size='small'
           type='link'
           onClick={() => history.push('/assets')}>
-          Assets
+          {formatMessage(messages.assets)}
         </Button>
       </Item>
 
@@ -62,7 +63,7 @@ const ProtectedNavbar = () => {
             openNotification('Logout', "You've been logged out succesfully!");
             history.push('/');
           }}>
-          Log out
+          {formatMessage(messages.logout)}
         </Button>
       </Item>
     </Menu>
@@ -70,3 +71,22 @@ const ProtectedNavbar = () => {
 };
 
 export default ProtectedNavbar;
+
+const messages = defineMessages({
+  logout: {
+    id: 'client.src.components.navbar.protectedNavbar.logout',
+    defaultMessage: 'Log out',
+  },
+  assets: {
+    id: 'client.src.components.navbar.protectedNavbar.assets',
+    defaultMessage: 'Assets',
+  },
+  categories: {
+    id: 'client.src.components.navbar.protectedNavbar.categories',
+    defaultMessage: 'Device categories',
+  },
+  devices: {
+    id: 'client.src.components.navbar.protectedNavbar.devices',
+    defaultMessage: 'Devices',
+  },
+});

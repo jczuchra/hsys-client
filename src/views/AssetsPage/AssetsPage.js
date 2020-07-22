@@ -43,7 +43,7 @@ const AssetsPage = () => {
         </Button>
       </div>
       <Table
-        columns={columns}
+        columns={columns(formatMessage)}
         dataSource={columnData}
         loading={loading}
         className='tableContainer'

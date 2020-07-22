@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import { Form, Input, InputNumber, DatePicker, Select } from 'antd';
-import gql from 'graphql-tag';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import CreateContainer from '../../../components/CreateContainer/CreateContainer';
 import { openNotification } from '../../../common/functions/openNotification';
@@ -25,8 +24,11 @@ const AddDevice = ({ value = {}, onChange }) => {
     { data, loading: mutationLoading, error: mutationError },
   ] = useMutation(ADD_DEVICE, {
     onCompleted: (data) => {
-      console.log('Data', data);
-      openNotification('Add device', data.addDevice.message, 'success');
+      openNotification(
+        formatMessage(messages.addDevice),
+        data.addDevice.message,
+        'success'
+      );
       history.push('/devices');
     },
     update: (cache, { data: { addDevice } }) => {
@@ -51,27 +53,36 @@ const AddDevice = ({ value = {}, onChange }) => {
 
   const formItems = (
     <React.Fragment>
-      <Form.Item name='name' label='Name' rules={[{ required: true }]}>
+      <Form.Item
+        name='name'
+        label={formatMessage(messages.name)}
+        rules={[{ required: true }]}>
         <Input />
       </Form.Item>
-      <Form.Item name='productionDate' label='Production date' {...config}>
+      <Form.Item
+        name='productionDate'
+        label={formatMessage(messages.productionDate)}
+        {...config}>
         <DatePicker />
       </Form.Item>
-      <Form.Item name='lastMaintenance' label='Last maintenance' {...config}>
+      <Form.Item
+        name='lastMaintenance'
+        label={formatMessage(messages.lastMaintenance)}
+        {...config}>
         <DatePicker />
       </Form.Item>
       <Form.Item
         name='location'
-        label='Location'
+        label={formatMessage(messages.location)}
         rules={[{ required: true, type: 'number' }]}>
         <InputNumber />
       </Form.Item>
       <Form.Item
         name='categoryId'
-        label='Category'
+        label={formatMessage(messages.category)}
         rules={[{ required: true }]}>
         <Select
-          defaultValue='Select category'
+          defaultValue={formatMessage(messages.selectCategory)}
           className={styles.select}
           disabled={
             categoryData && !categoryData.allDeviceCategories.allElements.length
@@ -102,15 +113,43 @@ export default AddDevice;
 
 const messages = defineMessages({
   backTo: {
-    id: 'client.src.views.AssetsPage.createAsset.backTo',
+    id: 'client.src.views.devicesPage.addDevice.backTo',
     defaultMessage: 'Devices',
   },
   currentPage: {
-    id: 'client.src.views.AssetsPage.createAsset.currentPage',
+    id: 'client.src.views.devicesPage.addDevice.currentPage',
     defaultMessage: 'Add device',
   },
   save: {
-    id: 'client.src.components.createContainer.create',
+    id: 'client.src.views.devicesPage.addDevice.create',
     defaultMessage: 'Save',
+  },
+  name: {
+    id: 'client.src.views.devicesPage.addDevice.name',
+    defaultMessage: 'Name',
+  },
+  location: {
+    id: 'client.src.views.devicesPage.addDevice.location',
+    defaultMessage: 'Location',
+  },
+  productionDate: {
+    id: 'client.src.views.devicesPage.addDevice.productionDate',
+    defaultMessage: 'Production date',
+  },
+  lastMaintenance: {
+    id: 'client.src.views.devicesPage.addDevice.lastMaintenance',
+    defaultMessage: 'Last maintenance',
+  },
+  category: {
+    id: 'client.src.views.devicesPage.addDevice.category',
+    defaultMessage: 'Category',
+  },
+  selectCategory: {
+    id: 'client.src.views.devicesPage.addDevice.selectCategory',
+    defaultMessage: 'Select category',
+  },
+  addDevice: {
+    id: 'client.src.views.devicesPage.addDevice.addDevice',
+    defaultMessage: 'Add device',
   },
 });

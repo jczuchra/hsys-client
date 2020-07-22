@@ -54,7 +54,7 @@ const DeviceMenu = ({ record }) => {
         onClick={() => {
           history.push(`/editDevice?id=${record.id}`);
         }}>
-        Edit
+        {formatMessage(messages.edit)}
       </Button>
       <Button
         className={styles.deleteButton}
@@ -80,11 +80,15 @@ export default DeviceMenu;
 
 const messages = defineMessages({
   title: {
-    id: 'client.src.views.devicesPage.assetsMenu.title',
+    id: 'client.src.views.devicesPage.deviceMenu.title',
     defaultMessage: 'Delete',
   },
   deleteMessage: {
-    id: 'client.src.views.devicesPage.assetsMenu.deleteMessage',
+    id: 'client.src.views.devicesPage.deviceMenu.deleteMessage',
     defaultMessage: "Do you really want to delete ''{asset}''?",
+  },
+  edit: {
+    id: 'client.src.views.devicesPage.edit',
+    defaultMessage: 'Edit',
   },
 });

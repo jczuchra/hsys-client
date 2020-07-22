@@ -14,13 +14,18 @@ import {
 import moment from 'moment';
 import styles from './editDevice.module.scss';
 
-const config = {
-  rules: [{ type: 'object', required: false, message: 'Please select time!' }],
-};
-
 const EditDevice = ({ value = {}, onChange }) => {
   const { formatMessage } = useIntl();
   const history = useHistory();
+  const config = {
+    rules: [
+      {
+        type: 'object',
+        required: false,
+        message: formatMessage(messages.selectTime),
+      },
+    ],
+  };
   const [category, setCategory] = useState();
   const { location } = history;
   const params = new URLSearchParams(location.search);
@@ -46,7 +51,11 @@ const EditDevice = ({ value = {}, onChange }) => {
     { data, loading: mutationLoading, error: mutationError },
   ] = useMutation(EDIT_DEVICE, {
     onCompleted: (data) => {
-      openNotification('Edit device', data.editDevice.message, 'success');
+      openNotification(
+        formatMessage(messages.editCategory),
+        data.editDevice.message,
+        'success'
+      );
       history.push('/devices');
     },
     update: (cache, { data: { editDevice } }) => {
@@ -75,38 +84,38 @@ const EditDevice = ({ value = {}, onChange }) => {
       <Form.Item
         initialValue={name}
         name='name'
-        label='Name'
+        label={formatMessage(messages.name)}
         rules={[{ required: false }]}>
         <Input />
       </Form.Item>
       <Form.Item
         initialValue={moment(productionDate)}
         name='productionDate'
-        label='Production date'
+        label={formatMessage(messages.productionDate)}
         {...config}>
         <DatePicker />
       </Form.Item>
       <Form.Item
         initialValue={moment(lastMaintenance)}
         name='lastMaintenance'
-        label='Last maintenance'
+        label={formatMessage(messages.lastMaintenance)}
         {...config}>
         <DatePicker />
       </Form.Item>
       <Form.Item
         name='location'
-        label='Location'
+        label={formatMessage(messages.location)}
         initialValue={deviceLocation}
         rules={[{ required: false, type: 'number' }]}>
         <InputNumber />
       </Form.Item>
       <Form.Item
         name='categoryId'
-        label='Category'
+        label={formatMessage(messages.category)}
         rules={[{ required: false }]}>
         <Select
           disabled
-          defaultValue='Select category'
+          defaultValue={formatMessage(messages.selectCategory)}
           className={styles.select}
           value={category}
           onChange={(newCategory) => setCategory(newCategory)}>
@@ -138,15 +147,47 @@ export default EditDevice;
 
 const messages = defineMessages({
   backTo: {
-    id: 'client.src.views.AssetsPage.createAsset.backTo',
+    id: 'client.src.views.devicesPage.editDevice.backTo',
     defaultMessage: 'Devices',
   },
   currentPage: {
-    id: 'client.src.views.AssetsPage.createAsset.currentPage',
+    id: 'client.src.views.devicesPage.editDevice.currentPage',
     defaultMessage: 'Edit device',
   },
   save: {
-    id: 'client.src.components.createContainer.create',
+    id: 'client.src.views.devicesPage.editDevice.create',
     defaultMessage: 'Save',
+  },
+  selectTime: {
+    id: 'client.src.views.devicesPage.editDevice.selectTime',
+    defaultMessage: 'Please select time!',
+  },
+  name: {
+    id: 'client.src.views.devicesPage.editDevice.name',
+    defaultMessage: 'Name',
+  },
+  location: {
+    id: 'client.src.views.devicesPage.editDevice.location',
+    defaultMessage: 'Location',
+  },
+  productionDate: {
+    id: 'client.src.views.devicesPage.editDevice.productionDate',
+    defaultMessage: 'Production date',
+  },
+  lastMaintenance: {
+    id: 'client.src.views.devicesPage.editDevice.lastMaintenance',
+    defaultMessage: 'Last maintenance',
+  },
+  category: {
+    id: 'client.src.views.devicesPage.editDevice.category',
+    defaultMessage: 'Category',
+  },
+  selectCategory: {
+    id: 'client.src.views.devicesPage.editDevice.selectCategory',
+    defaultMessage: 'Select category',
+  },
+  editCategory: {
+    id: 'client.src.views.devicesPage.editDevice.editCategory',
+    defaultMessage: 'Edit category',
   },
 });
