@@ -12,8 +12,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import 'antd/dist/antd.css';
 
 const httpLink = createHttpLink({
-  // uri: 'https://hsys-server.herokuapp.com/graphql',
-  uri: 'http://localhost:4000/graphql',
+  uri: 'https://hsys-server.herokuapp.com/graphql',
+  // uri: 'http://localhost:4000/graphql',
   credentials: 'include',
 });
 
@@ -57,7 +57,7 @@ ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
       <ApolloProvider client={client}>
-        <GoogleReCaptchaProvider reCaptchaKey='6LcZ17IZAAAAAPodFHFTG0zAmOyst4zF4Nn9DoCs'>
+        <GoogleReCaptchaProvider reCaptchaKey='6Lej07IZAAAAAGTOqZzqertVIPKVnBrTujkdfrkx'>
           <App />
         </GoogleReCaptchaProvider>
       </ApolloProvider>
